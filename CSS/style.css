@@ -1,0 +1,53 @@
+/* Global */
+
+:root {
+  --first-color: #5585b5;
+  --second-color: #53a8b6;
+  --third-color: #79c2d0;
+  --fourth-color: #bbe4e9;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: arial, sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  display: flex;
+}
+/* Workout container */
+
+.workout-container {
+  display: flex;
+  width: 35vw;
+  height: 100vh;
+  background-color: var(--first-color);
+}
+
+/* Map container*/
+.map-container {
+  width: 65vw;
+  height: 100vh;
+}
+
+.workout-popup {
+  border-left: 5px solid var(--fourth-color);
+}
+
+.leaflet-popup .leaflet-popup-content-wrapper {
+  background-color: var(--second-color);
+  color: #ececec;
+  font-size: 1.5rem;
+  padding-right: 0.1rem;
+  border-radius: 5px;
+}
+
+.leaflet-popup .leaflet-popup-tip {
+  background-color: var(--second-color);
+}

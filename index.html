@@ -6,8 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Workout Map</title>
     <link rel="stylesheet" href="/CSS/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css"
+      integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+      crossorigin=""
+    />
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js"
+      integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s="
+      crossorigin=""
+    ></script>
+    <script defer src="/script.js"></script>
   </head>
   <body>
-    <script src="/script.js"></script>
+    <section class="workout-container">
+      <ul>
+        <form>
+            <div cass="form_row">
+              <label for="workout-option">Type</label>
+              <select id="workout-option">
+                <option>Running</option>
+                <option>Cycling</option>
+              </select>
+            </div>
+            <div cass="form_row">
+              <label for="workout-distance">Distance</label>
+              <input id="workout-distance" placeholder="km">
+              </input>
+            </div>
+            <div cass="form_row">
+                <label for="workout-duration">Duration</label>
+                <input id="workout-duration" placeholder="min">
+                </input>
+            </div>
+            <div cass="form_row">
+                <label for="workout-cadence">Cadence</label>
+                <input id="workout-cadence" placeholder="step/min">
+                </input>
+              </div>
+          </form>
+      </ul>
+    </section>
+    <section class="map-container" id="map"></section>
   </body>
 </html>
