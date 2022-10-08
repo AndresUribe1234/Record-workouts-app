@@ -22,30 +22,39 @@
   </head>
   <body>
     <section class="workout-container">
+        <div class="icon-container">
+            <img src="https://cdn-icons-png.flaticon.com/128/2548/2548534.png">
+        </div>
       <ul>
-        <form>
-            <div cass="form_row">
+        <form class="workout-form hidden">
+            <div class="form-row">
               <label for="workout-option">Type</label>
               <select id="workout-option">
                 <option>Running</option>
                 <option>Cycling</option>
               </select>
             </div>
-            <div cass="form_row">
+            <div class="form-row">
               <label for="workout-distance">Distance</label>
               <input id="workout-distance" placeholder="km">
               </input>
             </div>
-            <div cass="form_row">
+            <div class="form-row">
                 <label for="workout-duration">Duration</label>
                 <input id="workout-duration" placeholder="min">
                 </input>
             </div>
-            <div cass="form_row">
+            <div class="form-row">
                 <label for="workout-cadence">Cadence</label>
                 <input id="workout-cadence" placeholder="step/min">
                 </input>
-              </div>
+            </div>
+            <div class="form-row hidden">
+                <label for="workout-elevation">Elevation</label>
+                <input id="workout-elevation" placeholder="meters">
+                </input>
+            </div>
+            <button class="form-btn">OK</button>
           </form>
       </ul>
     </section>
