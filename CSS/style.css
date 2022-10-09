@@ -100,8 +100,12 @@ ul {
   height: 100vh;
 }
 
-.workout-popup {
+.workout-popup-Running {
   border-left: 5px solid var(--fourth-color);
+}
+
+.workout-popup-Cycling {
+  border-left: 5px solid var(--first-color);
 }
 
 .leaflet-popup .leaflet-popup-content-wrapper {
