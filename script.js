@@ -8,43 +8,67 @@ const inputElevation = document.getElementById("workout-elevation");
 const selectorOption = document.getElementById("workout-option");
 let map, mapEvent;
 
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
+class App {
+  constructor() {
+    this._getPosition();
+    this._map;
+    this._mapEvent;
+
+    form.addEventListener("submit", this._newWorkout.bind(this));
+
+    selectorOption.addEventListener("change", function () {
+      if (selectorOption.value !== "Running") {
+        inputElevation.closest(".form-row").classList.remove("hidden");
+        inputCadence.closest(".form-row").classList.add("hidden");
+      } else {
+        inputElevation.closest(".form-row").classList.add("hidden");
+        inputCadence.closest(".form-row").classList.remove("hidden");
+      }
+      console.log(selectorOption.value);
+    });
+  }
+  _getPosition() {
+    navigator.geolocation.getCurrentPosition(
+      this._loadMap.bind(this),
+      function () {
+        alert("Could not get your position");
+      }
+    );
+  }
+
+  _loadMap(position) {
+    if (navigator.geolocation) {
       const { latitude, longitude } = position.coords;
       const coords = [latitude, longitude];
 
-      map = L.map("map").setView(coords, 14);
+      this._map = L.map("map").setView(coords, 14);
 
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(map);
+      }).addTo(this._map);
 
       //   Handling clickes on map
-      map.on("click", function (mapE) {
-        mapEvent = mapE;
-        form.classList.remove("hidden");
-        inputDistance.focus();
-      });
-    },
-    function () {
-      alert("Could not get your position");
+      this._map.on("click", this._showForm.bind(this));
     }
-  );
-
-  form.addEventListener("submit", function (e) {
+  }
+  _showForm(mapE) {
+    this._mapEvent = mapE;
+    form.classList.remove("hidden");
+    inputDistance.focus();
+  }
+  _toggleInputForm() {}
+  _newWorkout(e) {
     e.preventDefault();
-
     inputDistance.value =
       inputCadence.value =
       inputDuration.value =
       inputElevation.value =
         "";
-    const { lat: latitude, lng: longitude } = mapEvent.latlng;
+    const { lat: latitude, lng: longitude } = this._mapEvent.latlng;
     const coords = [latitude, longitude];
     L.marker(coords)
-      .addTo(map)
+      .addTo(this._map)
       .bindPopup(
         L.popup({
           maxWidth: 250,
@@ -56,16 +80,7 @@ if (navigator.geolocation) {
       )
       .setPopupContent("workout")
       .openPopup();
-  });
-
-  selectorOption.addEventListener("change", function () {
-    if (selectorOption.value !== "Running") {
-      inputElevation.closest(".form-row").classList.remove("hidden");
-      inputCadence.closest(".form-row").classList.add("hidden");
-    } else {
-      inputElevation.closest(".form-row").classList.add("hidden");
-      inputCadence.closest(".form-row").classList.remove("hidden");
-    }
-    console.log(selectorOption.value);
-  });
+  }
 }
+
+const app = new App();
